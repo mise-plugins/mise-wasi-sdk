@@ -35,12 +35,16 @@ download_release() {
   version="$1"
   filename="$2"
   arch="$(uname -m)"
-  
+
   case "$OSTYPE" in
     linux*) os=linux ;;
     darwin*) os=macos ;;
     msys*) os=mingw ;;
     *) fail "no prebuilt package for os" ;;
+  esac
+
+  case "$arch" in
+    aarch64) arch="arm64" ;;
   esac
 
   if [ "$version" -ge 23 ]; then
